@@ -9,7 +9,7 @@ const router = express.Router()
 router.get('/', async (req, res) => {
     try {
         const allUsers = await UserModel.find()
-        res.send({ message: "you are in home" }).json(allUsers)
+        res.send({ success: true, data: allUsers })
 
     } catch (error) {
         console.log(`error occured while fetching data ${error}`)
