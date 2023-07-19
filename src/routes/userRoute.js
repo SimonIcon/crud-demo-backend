@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
     try {
         const allUsers = await UserModel.find()
         res.send({ success: true, data: allUsers })
+        res.json({ message: "welcome home", data: allUsers })
 
     } catch (error) {
         console.log(`error occured while fetching data ${error}`)

@@ -1,7 +1,7 @@
 const express = require('express')
 const dotenv = require('dotenv')
 const bodyParser = require('body-parser')
-
+const cors = require('cors')
 dotenv.config()
 // creating app
 
@@ -14,6 +14,7 @@ const app = express()
 
 // middleware
 app.use(bodyParser.json())
+app.use(cors())
 
 // routes middleware
 app.use('/', userRoutes)
