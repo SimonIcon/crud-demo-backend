@@ -19,14 +19,14 @@ router.get('/', async (req, res) => {
 // createing users
 router.post('/createUser', async (req, res) => {
     try {
-        const users = await UserModel.create({
+        const createUser = await UserModel.create({
             username: req.body.username,
             userEmail: req.body.userEmail,
             origin: req.body.origin,
             isAdmin: req.body.isAdmin,
             password: req.body.password,
         })
-        res.json(users)
+        res.send({ success: true, message: "user added successfully", data: createUser })
 
     } catch (error) {
         res.json(`error occured ${error.message}`);
@@ -43,7 +43,7 @@ router.patch('/updateUser/:userId', async (req, res) => {
                 password: req.body.password,
             }
         })
-        res.json({ message: "post updated" })
+        res.send({ success: true, message: "user updated successfully" })
     } catch (error) {
         console.log(`error occured while updating ${error}`)
     }
@@ -52,7 +52,7 @@ router.patch('/updateUser/:userId', async (req, res) => {
 router.delete('/deleteUser/:userId', async (req, res) => {
     try {
         await UserModel.findByIdAndRemove({ _id: req.params.userId })
-        res.json({ message: "deleted a post" })
+        res.send({ success: true, message: "user deleted" })
     } catch (error) {
         console.log(`Erro while deleting a post ${error}`)
     }
